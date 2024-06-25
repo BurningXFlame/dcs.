@@ -17,6 +17,8 @@ DCS also makes some enhancements in fine-grained reliability.
 
 ## Use
 
+### CR
+
 Just create a CR to define a job and that's it. The job will reliably run as expected.
 
 Let's start with the simplest example.
@@ -34,4 +36,35 @@ spec:
       url: http://someHost/somePath
 ```
 
-To learn more, view the [complete list of all features](https://burningxflame.github.io/dcs/doc/pricing/), and go through the docs for detailed description of each feature.
+To learn more, view the [complete list of all features](https://www.bxflame.com/dcs/doc/pricing/), and go through the docs for detailed description of each feature.
+
+### RESTful
+
+RESTful API is also available.
+
+Let's take the same example as above.
+
+**Request**
+
+- Method: `PUT`
+- URL: `https://dcs:1058/jobs/some-ns/some-name`
+- Header: `Content-Type: application/json`
+- Body:
+
+  ```json
+  {
+    "expr": "* * * * *",
+    "callback": {
+      "http": {
+        "url": "http://somehost/somepath"
+      }
+    }
+  }
+  ```
+
+**Response**
+
+- StatusCode: `200`
+- Body: `{"msg": "OK"}`
+
+To learn more, view the [RESTful API docs](https://www.bxflame.com/dcs/doc/rest/).
